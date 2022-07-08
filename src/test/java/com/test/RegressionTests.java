@@ -1,14 +1,13 @@
 package com.test;
 
-import java.time.Duration;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import com.configuration.BaseTest;
 import com.main.YahooKeywords;
-import com.yahoopages.SecondPage;
 import com.yahoopages.SignInPage;
-import com.yahoopages.ThirdPage;
+import com.yahoopages.YahooHomePage;
+import com.yahoopages.YahooMailPage;
 
 public class RegressionTests extends BaseTest {
 	@Test
@@ -32,7 +31,7 @@ public class RegressionTests extends BaseTest {
 		page.enterPassword();
 		page.clickOnNextLnk2();
 
-		SecondPage s = PageFactory.initElements(YahooKeywords.driver, SecondPage.class);
+		YahooHomePage s = PageFactory.initElements(YahooKeywords.driver, YahooHomePage.class);
 		s.clickOnMailLnk();
 
 	}
@@ -46,17 +45,17 @@ public class RegressionTests extends BaseTest {
 		page.enterPassword();
 		page.clickOnNextLnk2();
 
-		SecondPage s = PageFactory.initElements(YahooKeywords.driver, SecondPage.class);
+		YahooHomePage s = PageFactory.initElements(YahooKeywords.driver, YahooHomePage.class);
 		s.clickOnMailLnk();
 
-		ThirdPage t = PageFactory.initElements(YahooKeywords.driver, ThirdPage.class);
+		YahooMailPage t = PageFactory.initElements(YahooKeywords.driver, YahooMailPage.class);
 		t.clickOnComposeLnk();
-		YahooKeywords.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
-
 		t.enterEmailID();
 		t.typeSubject();
 		t.enterMessageBody();
 		t.clickOnSendLnk();
+		t.clickOnSentLink();
+		t.getTextOfSentParticipant();
 
 	}
 
